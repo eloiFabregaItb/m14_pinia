@@ -22,9 +22,10 @@ const count = ref(0);
 function addProduct(){
   if(count.value<=0) return
 
-  console.log(props.product,count.value)
   products.addProduct(props.product,count.value)
 
+  console.log(products.products)
+  console.log(products.getLength)
   count.value = 0
 }
 

@@ -11,6 +11,14 @@ export const useProductsStore = defineStore("ProductStores", {
       } else {
         this.products[p.id] = { ...p, count };
       }
+
+      console.log(this.products);
+    },
+    updateCount(id, count) {
+      this.products[id].count = count;
+    },
+    delete(id) {
+      delete this.products[id];
     },
   },
   getters: {
@@ -19,6 +27,12 @@ export const useProductsStore = defineStore("ProductStores", {
     },
     getLength() {
       return Object.values(this.products).reduce((acc, v) => acc + v.count, 0);
+    },
+    getAllPrice() {
+      return Object.values(this.products).reduce(
+        (acc, v) => acc + v.count * v.price,
+        0
+      );
     },
   },
 });
