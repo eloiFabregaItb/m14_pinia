@@ -9,11 +9,17 @@ import "./assets/main.pcss";
 import AppButton from "./components/AppButton.vue";
 import AppCountInput from "./components/AppCountInput.vue";
 import AppModalOverlay from "./components/AppModalOverlay.vue";
+import { createPinia } from "pinia";
+
+const pinia = createPinia();
 
 // Init App
 createApp(App)
   .use(FontAwesomePlugin)
+  .use(pinia)
   .component("AppButton", AppButton)
   .component("AppCountInput", AppCountInput)
   .component("AppModalOverlay", AppModalOverlay)
   .mount("#app");
+
+// app.use(pinia);

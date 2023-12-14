@@ -1,20 +1,24 @@
 [
   {
+    "id":"oil-001",
     "name": "Plain Ol' Pineapple",
     "image": "pineapple-original.jpg",
     "price" : 4
   },
   {
+    "id":"dried-001",
     "name": "Dried Pineapple",
     "image": "pineapple-dried.jpg",
     "price": 5
   },
   {
+    "id":"gum-001",
     "name": "Pineapple Gum",
     "image": "pineapple-gum.jpg",
     "price" : 3
   },
   {
+    "id":"tshirt-001",
     "name": "Pineapple T-Shirt",
     "image": "pineapple-tshirt.jpg",
     "price" : 12
