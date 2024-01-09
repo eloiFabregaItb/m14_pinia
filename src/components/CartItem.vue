@@ -1,8 +1,8 @@
 <script setup>
 
-import { useProductsStore } from '@/stores/products'
+import { useCartStore } from '@/stores/CartStore'
 
-const products = useProductsStore()
+const products = useCartStore()
 
 
 const props = defineProps({
@@ -13,7 +13,13 @@ const props = defineProps({
 defineEmits(["updateCount", "clear"]);
 
 function updateCount(amount){
+  console.log(amount) 
   products.updateCount(props.product.id,amount)
+  // for(let i=0;i<amount;i++){
+  //   products.$patch(state=>{
+  //     state.updateAmont(props.product.id,1)
+  //   })
+  // }
 }
 
 function deleteProd(){

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useProductsStore = defineStore("ProductStores", {
+export const useCartStore = defineStore("CartStore", {
   state: () => ({
     products: {},
   }),
@@ -16,6 +16,9 @@ export const useProductsStore = defineStore("ProductStores", {
     },
     updateCount(id, count) {
       this.products[id].count = count;
+    },
+    updateAdd(id, count=1) {
+      this.products[id].count+= count;
     },
     delete(id) {
       delete this.products[id];

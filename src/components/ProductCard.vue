@@ -2,10 +2,10 @@
 // imports
 import { ref } from "vue";
 import AppCountInput from "./AppCountInput.vue";
-import { useProductsStore } from '@/stores/products'
+import { useCartStore } from '@/stores/CartStore'
 
 
-const products = useProductsStore()
+const products = useCartStore()
 
 // props
 const props = defineProps({
@@ -23,6 +23,11 @@ function addProduct(){
   if(count.value<=0) return
 
   products.addProduct(props.product,count.value)
+  // products.$patch(state=>{
+  //   for(let i=0; i<count.value; i++){
+  //     state.addProduct(props.product,1)
+  //   }
+  // })
 
   console.log(products.products)
   console.log(products.getLength)

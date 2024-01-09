@@ -2,10 +2,10 @@
 // imports
 import { ref } from "vue";
 import CartItem from "./CartItem.vue";
-import { useProductsStore } from '@/stores/products'
+import { useCartStore } from '@/stores/CartStore'
 
 
-const products = useProductsStore()
+const products = useCartStore()
 
 
 // data
