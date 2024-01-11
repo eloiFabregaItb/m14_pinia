@@ -7,6 +7,9 @@ import { useCartStore } from '@/stores/CartStore'
 
 const products = useCartStore()
 
+function clearCart(){
+  products.clear()
+}
 
 // data
 const active = ref(false);
@@ -20,8 +23,9 @@ const active = ref(false);
     </span>
     <!-- Modal Overlay only shows when cart is clicked on -->
     <AppModalOverlay :active="active" @close="active = false">
-      <div>
-        <ul class="items-in-cart">
+      <p v-if="products.isEmpty">Your cart is empty. Try to add some products.</p>
+      <div v-else>
+        <ul  class="items-in-cart">
 
           <CartItem
             v-for="product in products.getProducts"
@@ -35,7 +39,7 @@ const active = ref(false);
           Total: <strong>${{products.getAllPrice}}</strong>
         </div>
         <div class="flex justify-end">
-          <AppButton class="secondary mr-2">Clear Cart</AppButton>
+          <AppButton class="secondary mr-2" @click="clearCart">Clear Cart</AppButton>
           <AppButton class="primary">Checkout</AppButton>
         </div>
       </div>

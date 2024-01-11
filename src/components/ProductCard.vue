@@ -29,8 +29,8 @@ function addProduct(){
   //   }
   // })
 
-  console.log(products.products)
-  console.log(products.getLength)
+  // console.log(products.products)
+  // console.log(products.getLength)
   count.value = 0
 }
 

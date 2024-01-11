@@ -15,14 +15,25 @@ export const useCartStore = defineStore("CartStore", {
       console.log(this.products);
     },
     updateCount(id, count) {
+      if(count<=0){
+        delete this.products[id]
+        return
+      }
       this.products[id].count = count;
     },
     updateAdd(id, count=1) {
-      this.products[id].count+= count;
+      if(this.products[id].count+count <=0){
+        delete this.products[id]
+        return
+      }
+      this.products[id].count+=count;
     },
     delete(id) {
       delete this.products[id];
     },
+    clear(){
+      this.products={}
+    }
   },
   getters: {
     getProducts() {
@@ -30,6 +41,9 @@ export const useCartStore = defineStore("CartStore", {
     },
     getLength() {
       return Object.values(this.products).reduce((acc, v) => acc + v.count, 0);
+    },
+    isEmpty(){
+      return Object.values(this.products).length === 0
     },
     getAllPrice() {
       return Object.values(this.products).reduce(
