@@ -1,8 +1,13 @@
-import { defineStore } from "pinia";
+
+import { useAuthUserStore } from '@/stores/AuthUserStore'
+import {useLocalStorage} from "@vueuse/core"
+import { defineStore, acceptHMRUpdate} from "pinia";
 
 export const useCartStore = defineStore("CartStore", {
+  historyEnabled:true,
   state: () => ({
-    products: {},
+    // products: {},
+    products:useLocalStorage("CartStore:items",{})
   }),
   actions: {
     addProduct(p, count) {
@@ -11,8 +16,6 @@ export const useCartStore = defineStore("CartStore", {
       } else {
         this.products[p.id] = { ...p, count };
       }
-
-      console.log(this.products);
     },
     updateCount(id, count) {
       if(count<=0){
@@ -33,6 +36,10 @@ export const useCartStore = defineStore("CartStore", {
     },
     clear(){
       this.products={}
+    },
+    checkout(){
+      const authUserStore = useAuthUserStore()
+      alert(`${authUserStore.username} just bought ${this.getLength} at a total of $${this.getAllPrice}`)
     }
   },
   getters: {
@@ -53,3 +60,16 @@ export const useCartStore = defineStore("CartStore", {
     },
   },
 });
+
+
+
+
+
+
+
+
+
+
+if(import.meta.hot){
+  import.meta.hot.accept(acceptHMRUpdate(useCartStore,import.meta.hot));
+}

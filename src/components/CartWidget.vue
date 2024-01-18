@@ -7,8 +7,12 @@ import { useCartStore } from '@/stores/CartStore'
 
 const products = useCartStore()
 
-function clearCart(){
+function clearCart() {
   products.clear()
+}
+
+function checkout() {
+  products.checkout()
 }
 
 // data
@@ -25,22 +29,17 @@ const active = ref(false);
     <AppModalOverlay :active="active" @close="active = false">
       <p v-if="products.isEmpty">Your cart is empty. Try to add some products.</p>
       <div v-else>
-        <ul  class="items-in-cart">
+        <ul class="items-in-cart">
 
-          <CartItem
-            v-for="product in products.getProducts"
-            :product="product"
-            :count="product.count"
-            @updateCount=""
-            @clear=""
-          />
+          <CartItem v-for="product in products.getProducts" :product="product" :count="product.count" @updateCount=""
+            @clear="" />
         </ul>
         <div class="flex justify-end text-2xl mb-5">
-          Total: <strong>${{products.getAllPrice}}</strong>
+          Total: <strong>${{ products.getAllPrice }}</strong>
         </div>
         <div class="flex justify-end">
           <AppButton class="secondary mr-2" @click="clearCart">Clear Cart</AppButton>
-          <AppButton class="primary">Checkout</AppButton>
+          <AppButton class="primary" @click="checkout">Checkout</AppButton>
         </div>
       </div>
       <!-- Uncomment and use condition to show when cart is empty -->
